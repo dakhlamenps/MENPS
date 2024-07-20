@@ -4,6 +4,13 @@
     <link rel="icon" type="image/png" sizes="32x32" href="favicon.ico">
 	<meta charset="utf-8">
 	<title>MENPS DAKHLA</title>
+    <script>
+        // Fonction pour générer l'URL du PDF avec un paramètre de cache-busting
+        function getPdfUrl() {
+            const timestamp = new Date().getTime();
+            return `publication.pdf?v=${timestamp}#toolbar=0&view=FitH`;
+        }
+    </script>
 	
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
@@ -768,7 +775,11 @@ window.onclick = function(event) {
                                                         <div>
                                                             <div>
                                                                 <div style="border-radius: 20px;width: 100%; overflow: hidden;">
-                                                                    <iframe src="publications.pdf?v=<?=time()?>#toolbar=0&view=FitH" width="100%" height="745vh" style="border: none;"></iframe>
+                                                                    <iframe id="pdfFrame" width="100%" height="745vh" style="border: none;"></iframe>
+    <script>
+        // Met à jour l'URL du PDF dans l'iframe
+        document.getElementById('pdfFrame').src = getPdfUrl();
+    </script>
                                                                 </div>
                                                             </div>
                                                         </div>
